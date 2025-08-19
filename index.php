@@ -8,7 +8,16 @@
 </head>
 
 <body>
-    <?php echo "<h1>Hello, World!</h1>"; ?>
+    <?php
+    session_start();
+    if (!empty($_SESSION['user_name'])) {
+        echo "<h1>Welcome, " . htmlspecialchars($_SESSION['user_name']) . "</h1>";
+        echo '<p><a href="auth/logout.php">Logout</a></p>';
+    } else {
+        // Removed the "Hello, World!" header per request — keep login/register links only
+        echo '<p><a href="auth/login.php">Login</a> | <a href="auth/register.php">Create account</a></p>';
+    }
+    ?>
 </body>
 
 </html>
